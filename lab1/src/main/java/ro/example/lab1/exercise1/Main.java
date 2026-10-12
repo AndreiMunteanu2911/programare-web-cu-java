@@ -1,3 +1,5 @@
+package ro.example.lab1.exercise1;
+
 import ro.example.lab1.exercise1.notification.NotificationSender;
 import ro.example.lab1.exercise1.notification.impl.SmsNotificationSender;
 import ro.example.lab1.exercise1.service.NotificationService;

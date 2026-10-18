@@ -136,13 +136,13 @@ La finalul laboratorului, studenții ar trebui să poată:
 
 ## Laboratorul 2 – Spring Core: Bean Scopes & AOP
 
-*În pregătire.*
+Exercițiile se găsesc în folderul `lab2`, un proiect Maven independent.
 
-Vom aborda:
+1. **Shopping Cart** – Singleton vs. Prototype și ObjectProvider.
+2. **Recommendation Engine** – Eager vs. Lazy Initialization.
+3. **Order Processing** – Spring AOP: Pointcuts și Advice.
 
-- Bean Scopes: Singleton și Prototype.
-- Eager vs. Lazy Initialization.
-- Aspect-Oriented Programming (AOP).
-- Logging, Pointcuts și Advice-uri Spring.
+Pentru rulare, deschideți `lab2` în IntelliJ IDEA,
+configurați JDK 21 și rulați clasa `Main` a fiecărui exercițiu.
 
-Exercițiile și instrucțiunile pentru Laboratorul 2 vor fi adăugate ulterior.
+Exercițiile conțin comentarii TODO care trebuie completate.

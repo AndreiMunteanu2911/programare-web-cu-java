@@ -15,9 +15,8 @@ public class OrderLoggingAspect {
     }
 
     @Before("orderMethods()")
-    public void logBefore(JoinPoint joinPoint) {
-        System.out.println("[AOP] Before: "
-                + joinPoint.getSignature().getName());
+    public void logBefore() {
+        System.out.println("[AOP] Before: Placing order...");
     }
 
     // TODO 1: Implementati @AfterReturning

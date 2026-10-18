@@ -1,53 +1,91 @@
-# Programare Web cu Java – Laboratorul 1
+# Programare Web cu Java
 
-## Spring Core – Beans & Dependency Injection
+Acest repository conține exercițiile practice pentru laboratoarele de **Programare Web cu Java**, folosind Java, Maven și Spring Framework.
 
-Acest repository conține exercițiile practice pentru primul laborator de Programare Web cu Java.
+Fiecare laborator este organizat într-un folder separat și reprezintă un proiect Maven independent, cu propriile dependențe și exerciții.
 
-**Obiectivele laboratorului:**
-- Înțelegerea conceptelor de Inversion of Control (IoC) și Dependency Injection (DI).
-- Definirea și utilizarea bean-urilor Spring.
-- Utilizarea `ApplicationContext` pentru recuperarea bean-urilor.
-- Înregistrarea componentelor prin `@Bean` și `@Component`.
-- Injectarea dependențelor prin constructor.
-- Rezolvarea ambiguităților folosind `@Primary` și `@Qualifier`.
+## Structura repository-ului
 
-## Cerințe
+```text
+programare-web-cu-java/
+├── lab1/
+│   ├── pom.xml
+│   └── src/
+│       └── main/java/ro/example/lab1/
+│           ├── exercise1/
+│           ├── exercise2/
+│           ├── exercise3/
+│           └── exercise4/
+├── README.md
+└── .gitignore
+```
+
+**Laboratoare:**
+- **Laboratorul 1:** Spring Core – Beans & Dependency Injection
+- **Laboratorul 2:** Spring Core – Bean Scopes, Lazy Initialization & AOP *(în pregătire)*
+
+## Cerințe generale
 
 - Java JDK 21
 - IntelliJ IDEA
 - Maven (integrat în IntelliJ IDEA)
-- Spring Context (gestionat prin Maven)
+- Git (opțional, pentru clonarea repository-ului)
 
-## Pornirea proiectului
+Dependențele Spring sunt gestionate automat prin Maven, conform fișierului `pom.xml` al fiecărui laborator.
+
+## Cum pornim proiectul
 
 1. Clonați repository-ul:
 
-   `git clone https://github.com/tbogdang99/programare-web-cu-java.git`
+   ```bash
+   git clone https://github.com/tbogdang99/programare-web-cu-java.git
+   ```
 
-2. Deschideți proiectul în IntelliJ IDEA.
-3. Selectați JDK 21 dacă IntelliJ solicită configurarea SDK-ului.
-4. Așteptați încărcarea dependențelor Maven din `pom.xml`.
-5. Deschideți clasa `Main.java` din exercițiul dorit și rulați metoda `main()`.
+   Alternativ, puteți descărca proiectul folosind **Code → Download ZIP** din GitHub.
 
-Fiecare exercițiu are propriul punct de pornire.
+2. Deschideți IntelliJ IDEA.
+3. Selectați **File → Open** și alegeți folderul laboratorului dorit, de exemplu `lab1`.
+4. Verificați că proiectul utilizează **JDK 21**.
+5. Așteptați importarea proiectului Maven și descărcarea dependențelor din `lab1/pom.xml`.
+6. Deschideți clasa `Main.java` din exercițiul dorit și rulați metoda `main()`.
+
+**Important:** Fiecare exercițiu are propria clasă `Main.java` și poate fi rulat separat.
+
+---
+
+# Laboratorul 1 – Spring Core: Beans & Dependency Injection
+
+## Obiective
+
+La finalul laboratorului, studenții ar trebui să poată:
+
+- Explica noțiunile de **Inversion of Control (IoC)** și **Dependency Injection (DI)**.
+- Defini și utiliza bean-uri Spring.
+- Folosi `ApplicationContext` pentru a recupera bean-uri.
+- Înregistra componente prin `@Bean` și `@Component`.
+- Realiza Dependency Injection prin constructor.
+- Rezolva ambiguitățile folosind `@Primary` și `@Qualifier`.
 
 ## Exercițiul 1 – Dependency Injection fără Spring
 
-**Scop:** eliminarea dependenței directe dintre un serviciu și implementarea concretă pe care o utilizează.
+**Scop:** Eliminarea dependenței directe dintre un serviciu și implementarea concretă pe care o utilizează.
 
 **Cerințe:**
+
 1. Identificați problema din `NotificationService`, unde `EmailNotificationSender` este instanțiat direct.
 2. Refactorizați clasa pentru a primi un `NotificationSender` prin constructor.
 3. Modificați `Main` pentru a crea și injecta dependența.
 4. Implementați `SmsNotificationSender`.
-5. Verificați că puteți schimba implementarea Email cu SMS fără modificarea clasei `NotificationService`.
+5. Verificați că puteți schimba implementarea Email cu SMS fără să modificați clasa `NotificationService`.
+
+**Concepte:** Tight Coupling, Interfaces, Constructor Injection.
 
 ## Exercițiul 2 – Spring Beans
 
-**Scop:** definirea și recuperarea bean-urilor din Spring ApplicationContext.
+**Scop:** Definirea și recuperarea bean-urilor din Spring ApplicationContext.
 
 **Cerințe:**
+
 1. Definiți un bean de tip `BankAccount` în `AppConfig`, folosind `@Bean`.
 2. Recuperați bean-ul în `Main`, folosind `getBean()`.
 3. Definiți un al doilea bean de același tip.
@@ -55,22 +93,28 @@ Fiecare exercițiu are propriul punct de pornire.
 5. Recuperați un bean după nume.
 6. Folosiți `@Primary` pentru a stabili bean-ul preferat.
 
+**Concepte:** `@Configuration`, `@Bean`, `ApplicationContext`, `@Primary`.
+
 ## Exercițiul 3 – Component Scanning
 
-**Scop:** înregistrarea automată a componentelor Spring.
+**Scop:** Înregistrarea automată a componentelor Spring.
 
 **Cerințe:**
+
 1. Adnotați clasa `GreetingService` cu `@Component`.
 2. Activați `@ComponentScan` în `AppConfig`.
 3. Recuperați `GreetingService` din Spring Context.
 4. Apelați metoda `greet("students")`.
 5. Dezactivați temporar component scanning și observați comportamentul aplicației.
 
+**Concepte:** `@Component`, `@ComponentScan`, `@Service`.
+
 ## Exercițiul 4 – Dependency Injection cu Spring
 
-**Scop:** gestionarea și injectarea automată a dependențelor folosind Spring.
+**Scop:** Gestionarea și injectarea automată a dependențelor folosind Spring.
 
 **Cerințe:**
+
 1. Înregistrați `EmailNotificationSender` și `SmsNotificationSender` drept componente Spring.
 2. Adnotați `NotificationService` cu `@Service`.
 3. Configurați `@ComponentScan`.
@@ -79,8 +123,26 @@ Fiecare exercițiu are propriul punct de pornire.
 6. Rezolvați ambiguitatea folosind `@Qualifier`.
 7. Experimentați și cu `@Primary`.
 
+**Concepte:** Constructor Injection, Component Scanning, `@Service`, `@Qualifier`, `@Primary`.
+
 ## Observații
 
 - Exercițiile conțin comentarii `TODO` care trebuie completate în timpul laboratorului.
 - Nu este necesară o bază de date sau un server web.
-- Pentru fiecare exercițiu se rulează clasa `Main` corespunzătoare.
+- Fiecare exercițiu are o clasă `Main.java` separată.
+- Exercițiile sunt concepute pentru a fi rezolvate progresiv, pornind de la noțiuni Java și continuând cu Spring Core.
+
+---
+
+## Laboratorul 2 – Spring Core: Bean Scopes & AOP
+
+*În pregătire.*
+
+Vom aborda:
+
+- Bean Scopes: Singleton și Prototype.
+- Eager vs. Lazy Initialization.
+- Aspect-Oriented Programming (AOP).
+- Logging, Pointcuts și Advice-uri Spring.
+
+Exercițiile și instrucțiunile pentru Laboratorul 2 vor fi adăugate ulterior.

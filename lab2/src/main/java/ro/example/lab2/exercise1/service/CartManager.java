@@ -22,7 +22,8 @@ public class CartManager {
     }
 
     public ShoppingCart createCart() {
-        // TODO 2: Obtineti un bean folosind cartProvider
+        // DONE 2: Obtineti un bean folosind cartProvider
+        ShoppingCart injectedCart = cartProvider.getObject();
         return injectedCart;
     }
 }

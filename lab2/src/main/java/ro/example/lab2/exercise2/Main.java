@@ -22,7 +22,7 @@ public class Main {
 
             System.out.println("\n=== Recommendation Engine ===");
 
-            // TODO 2: Observati cand este initializat RecommendationEngine
+            // DONE 2: Observati cand este initializat RecommendationEngine
             RecommendationEngine engine =
                     context.getBean(RecommendationEngine.class);
 

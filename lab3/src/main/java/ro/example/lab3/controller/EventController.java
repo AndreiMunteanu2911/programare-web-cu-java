@@ -5,6 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ro.example.lab3.model.Event;
 import ro.example.lab3.service.EventService;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class EventController {
@@ -18,8 +22,11 @@ public class EventController {
     @GetMapping("/events")
     public String showEvents(Model model) {
 
-        // TODO 1: Obtineti lista evenimentelor din EventService.
-        // TODO 2: Adaugati lista in Model cu numele "events".
+        // DONE 1: Obtineti lista evenimentelor din EventService.
+        List<Event> events = eventService.getAllEvents();
+
+        // DONE 2: Adaugati lista in Model cu numele "events".
+        model.addAttribute("events", events);
 
         return "events";
     }
@@ -33,12 +40,15 @@ public class EventController {
         return "event-form";
     }
 
-    // TODO 3: Adaugati @PostMapping pentru ruta /events
+    // DONE 3: Adaugati @PostMapping pentru ruta /events
+    @PostMapping("/events")
     public String addEvent(
-            // TODO 4: Folositi @ModelAttribute
+            // DONE 4: Folositi @ModelAttribute
+            @ModelAttribute("event")
             Event event) {
 
-        // TODO 5: Apelati eventService.addEvent(event)
+        // DONE 5: Apelati eventService.addEvent(event)
+        eventService.addEvent(event);
 
         return "redirect:/events";
     }

@@ -21,15 +21,15 @@ public class EventRestController {
     // EXERCISE 1 - Get all events
     @GetMapping("/events")
     public List<Event> getAllEvents() {
-        // TODO: Return all events using EventService.
-        return List.of();
+        // DONE: Return all events using EventService.
+        return eventService.getAllEvents();
     }
 
     // EXERCISE 2 - Get distinct categories
     @GetMapping("/categories")
     public List<String> getCategories() {
-        // TODO: Return all distinct categories.
-        return List.of();
+        // DONE: Return all distinct categories.
+        return eventService.getCategories();
     }
 
     // EXERCISE 3 - Create an event
@@ -38,15 +38,15 @@ public class EventRestController {
             consumes = "application/x-www-form-urlencoded"
     )
     public Event createEvent(@ModelAttribute Event event) {
-        // TODO: Add the event using EventService.
-        // TODO: Return the created event.
-        return null;
+        // DONE: Add the event using EventService.
+        // DONE: Return the created event.
+        return eventService.addEvent(event);
     }
 
     // EXERCISE 4 - Events summary
     @GetMapping("/events/summary")
     public Map<String, Integer> getSummary() {
-        // TODO: Return the events summary.
-        return Map.of();
+        // DONE: Return the events summary.
+        return eventService.getSummary();
     }
 }

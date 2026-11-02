@@ -26,23 +26,33 @@ public class EventService {
 
     // EXERCISE 2
     public List<String> getCategories() {
-        // TODO: Return all distinct event categories.
-        return new ArrayList<>();
+        // DONE: Return all distinct event categories.
+        return events.stream()
+                .map(Event::getCategory)
+                .distinct()
+                .toList();
     }
 
     // EXERCISE 3
     public Event addEvent(Event event) {
-        // TODO: Assign a unique ID to the new event.
-        // TODO: Add the event to the list.
-        // TODO: Return the created event.
-        return null;
+        // DONE: Assign a unique ID to the new event.
+        event.setId(nextId++);
+
+        // DONE: Add the event to the list.
+        events.add(event);
+
+        // DONE: Return the created event.
+        return event;
     }
 
     // EXERCISE 4
     public Map<String, Integer> getSummary() {
-        // TODO: Return a map containing:
+        // DONE: Return a map containing:
         // "totalEvents" - number of events
         // "totalCategories" - number of distinct categories
-        return Map.of();
+        return Map.of(
+                "totalEvents", events.size(),
+                "totalCategories", getCategories().size()
+        );
     }
 }

@@ -53,36 +53,59 @@ public class EventService {
 
     // EXERCISE 1 - Find event by ID
     public Event getEventById(Long id) {
-        // TODO: Search for the event with the given ID.
-        // TODO: Return the event if found, otherwise return null.
+        // DONE: Search for the event with the given ID.
+        // DONE: Return the event if found, otherwise return null.
+        for (Event event : events) {
+            if (event.getId().equals(id)) {
+                return event;
+            }
+        }
+
         return null;
     }
 
 
     // EXERCISE 2 - Filter events by category
     public List<Event> getEventsByCategory(String category) {
-        // TODO: Filter the events list by category.
-        // TODO: Return only the events whose category matches.
-        return List.of();
+        // DONE: Filter the events list by category.
+        // DONE: Return only the events whose category matches.
+        List<Event> filtered = new ArrayList<>();
+
+        for (Event event : events) {
+            if (event.getCategory().equals(category)) {
+                filtered.add(event);
+            }
+        }
+
+        return filtered;
     }
 
     // EXERCISE 4 - Update an event
     public Event updateEvent(Long id, Event updatedEvent) {
-        // TODO: Find the event with the given ID.
-        // TODO: Update its name and category.
-        // TODO: Return the updated event.
-        // TODO: Return null if the event doesn't exist.
+        // DONE: Find the event with the given ID.
+        // DONE: Update its name and category.
+        // DONE: Return the updated event.
+        // DONE: Return null if the event doesn't exist.
 
-        return null;
+        Event event = getEventById(id);
+
+        if (event == null) {
+            return null;
+        }
+
+        event.setName(updatedEvent.getName());
+        event.setCategory(updatedEvent.getCategory());
+
+        return event;
     }
 
     // EXERCISE 4 - Delete an event
     public boolean deleteEvent(Long id) {
-        // TODO: Find the event with the given ID.
-        // TODO: Remove it from the list.
-        // TODO: Return true if deleted, false otherwise.
+        // DONE: Find the event with the given ID.
+        // DONE: Remove it from the list.
+        // DONE: Return true if deleted, false otherwise.
 
-        return false;
+        return events.removeIf(event -> event.getId().equals(id));
     }
 
 }

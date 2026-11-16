@@ -1,6 +1,7 @@
 
 package ro.example.lab6.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.example.lab6.model.Event;
@@ -36,12 +37,9 @@ public class EventRestController {
 
         Event event = eventService.getEventById(id);
 
-        // TODO: Remove this local null check.
+        // DONE: Remove this local null check.
         // The Service should throw EventNotFoundException,
         // and GlobalExceptionHandler should handle it.
-        if (event == null) {
-            return ResponseEntity.notFound().build();
-        }
 
         return ResponseEntity.ok(event);
     }
@@ -72,8 +70,8 @@ public class EventRestController {
             consumes = "application/json"
     )
     public ResponseEntity<Event> createEvent(
-            // TODO: Add @Valid to validate the request body.
-            @RequestBody Event event) {
+            // DONE: Add @Valid to validate the request body.
+            @Valid @RequestBody Event event) {
 
         Event createdEvent = eventService.addEvent(event);
 
@@ -94,8 +92,8 @@ public class EventRestController {
     )
     public ResponseEntity<Event> updateEvent(
             @PathVariable("id") Long id,
-            // TODO: Add @Valid to validate the request body.
-            @RequestBody Event updatedEvent) {
+            // DONE: Add @Valid to validate the request body.
+            @Valid @RequestBody Event updatedEvent) {
 
         Event event = eventService.updateEvent(id, updatedEvent);
 

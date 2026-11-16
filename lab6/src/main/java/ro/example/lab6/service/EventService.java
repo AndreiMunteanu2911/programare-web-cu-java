@@ -2,6 +2,7 @@
 package ro.example.lab6.service;
 
 import org.springframework.stereotype.Service;
+import ro.example.lab6.exception.EventNotFoundException;
 import ro.example.lab6.model.Event;
 
 import java.util.ArrayList;
@@ -60,10 +61,10 @@ public class EventService {
             }
         }
 
-        // TODO: Instead of returning null, throw
+        // DONE: Instead of returning null, throw
         // EventNotFoundException with the missing event ID.
 
-        return null;
+        throw new EventNotFoundException(id);
     }
 
 

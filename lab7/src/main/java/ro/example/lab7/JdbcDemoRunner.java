@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 @Component
 @Profile("jdbc-demo")
@@ -24,19 +27,31 @@ public class JdbcDemoRunner implements CommandLineRunner {
 
         // EXERCISE 1 - JDBC Fundamentals
 
-        // TODO 1: Obtain a Connection from the DataSource.
+        // DONE 1: Obtain a Connection from the DataSource.
         // Use try-with-resources.
+        try (Connection connection = dataSource.getConnection()) {
+            // DONE 2: Create a PreparedStatement that selects
+            // an event by its ID.
+            String sql = "SELECT id, name, category FROM events WHERE id = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                // DONE 3: Bind eventId to the SQL parameter.
+                statement.setLong(1, eventId);
 
-        // TODO 2: Create a PreparedStatement that selects
-        // an event by its ID.
-
-        // TODO 3: Bind eventId to the SQL parameter.
-
-        // TODO 4: Execute the query and obtain a ResultSet.
-
-        // TODO 5: Read and display the event's
-        // id, name and category.
-
-        // TODO 6: Handle the case when no event is found.
+                // DONE 4: Execute the query and obtain a ResultSet.
+                try (ResultSet result = statement.executeQuery()) {
+                    if (result.next()) {
+                        // DONE 5: Read and display the event's
+                        // id, name and category.
+                        System.out.printf("Event %d: %s (%s)%n",
+                                result.getLong("id"),
+                                result.getString("name"),
+                                result.getString("category"));
+                    } else {
+                        // DONE 6: Handle the case when no event is found.
+                        System.out.println("No event found with ID " + eventId);
+                    }
+                }
+            }
+        }
     }
 }

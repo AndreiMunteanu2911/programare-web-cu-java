@@ -13,7 +13,7 @@ import java.util.Map;
 
 // EXERCISE 2 - Global Exception Handling
 
-// TODO: Add @RestControllerAdvice to handle exceptions globally.
+// DONE: Add @RestControllerAdvice to handle exceptions globally.
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
